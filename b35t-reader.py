@@ -20,26 +20,13 @@ def connectToDevice(child, mac):
     except pexpect.exceptions.TIMEOUT:
         print("Failed!")
 
-# function to transform hex byte like "0a" into unsigned integer
-#def hexStrToByte(hexstr):
-#    val = int(hexstr[0:2],16)
-#    return val
-
-# function to transform hex string like "0a cd" into signed integer
-#def hexStrToInt(hexstr):
-#    val = int(hexstr[0:2],16) + (int(hexstr[3:5],16)<<8)
-#    if ((val&0x8000)==0x8000): # treat signed 16bits
-#        val = -((val^0xffff)+1)
-#    return val
-
 print("Using B35T address:"),
 print(DEVICE_MAC)
 
-# Run gatttool interactively.
+# Run gatttool interactively
 print("Running gatttool...")
 childProc = pexpect.spawn("gatttool -I")
 connectToDevice(childProc, DEVICE_MAC)
-#timeoutCounter = 0
 
 # loop forever reading data lines
 while True:
